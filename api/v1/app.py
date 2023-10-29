@@ -16,6 +16,11 @@ def close(ctx):
     storage.close()
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return {"error": "Not found"}, 404
+
+
 if os.getenv("HBNB_API_HOST"):
     host = os.getenv("HBNB_API_HOST")
 else:
