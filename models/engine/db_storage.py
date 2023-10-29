@@ -79,7 +79,7 @@ class DBStorage:
         """retrieves one object"""
         if cls in classes.values() and id and type(id) == str:
             ret_objects = self.all(cls)
-            for key, value in ret_objects.values():
+            for key, value in ret_objects.items():
                 if key.split('.')[1] == id:
                     return value
         else:
