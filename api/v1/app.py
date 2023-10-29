@@ -12,7 +12,7 @@ app.register_blueprint(app_views, url_prefix="/api/v1")
 
 
 @app.teardown_appcontext
-def close():
+def close(ctx):
     storage.close()
 
 
@@ -27,4 +27,4 @@ else:
     port = 5000
 
 if __name__ == '__main__':
-    app.run(host-host, port=port, threaded=True)
+    app.run(host=host, port=port, threaded=True)
