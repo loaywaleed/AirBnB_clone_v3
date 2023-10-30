@@ -14,11 +14,13 @@ from models.user import User
 
 @app_views.route("/status", strict_slashes=False, methods=["GET"])
 def status():
+    """status of index"""
     return {"status": "OK"}
 
 
 @app_views.route("/stats", strict_slashes=False, methods=["GET"])
 def stats():
+    """count of objects"""
     return {
         "amenities": storage.count(Amenity),
         "cities": storage.count(City),
