@@ -13,11 +13,13 @@ app.register_blueprint(app_views, url_prefix="/api/v1")
 
 @app.teardown_appcontext
 def close(ctx):
+    """Method that closes on error"""
     storage.close()
 
 
 @app.errorhandler(404)
 def not_found(e):
+    """Method that returns an error"""
     return {"error": "Not found"}, 404
 
 
