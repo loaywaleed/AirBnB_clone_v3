@@ -9,18 +9,11 @@ from flask import abort, jsonify, request
 
 
 @app_views.route("/cities/<city_id>", strict_slashes=False, methods=["GET"])
-def get_city(city_id=None):
-    lst = []
-    if city_id is None:
-        cities = storage.all(City)
-        for city in cities.values():
-            lst.append(city.to_dict())
-        return jsonify(lst)
-    else:
-        city = storage.get(City, city_id)
-        if city is None:
-            abort(404)
-        return jsonify(city.to_dict())
+def get_city(city_id):
+    city = storage.get(City, city_id)
+    if city is None:
+        abort(404)
+    return jsonify(city.to_dict())
 
 
 @app_views.route("/states/<state_id>/cities", strict_slashes=False,
@@ -65,7 +58,7 @@ def create_city_state(state_id):
 
 
 @app_views.route("/cities/<city_id>", strict_slashes=False, methods=["PUT"])
-def update_state(city_id):
+def update_city(city_id):
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
